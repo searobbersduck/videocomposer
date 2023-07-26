@@ -414,8 +414,8 @@ class BasicTransformerBlock(nn.Module):
         super().__init__()
         # attn_mode = "softmax-xformers" if XFORMERS_IS_AVAILBLE else "softmax"
         # assert attn_mode in self.ATTENTION_MODES
-        # attn_cls = CrossAttention
-        attn_cls = MemoryEfficientCrossAttention
+        attn_cls = CrossAttention
+        # attn_cls = MemoryEfficientCrossAttention
         self.disable_self_attn = disable_self_attn
         self.attn1 = attn_cls(query_dim=dim, heads=n_heads, dim_head=d_head, dropout=dropout,
                               context_dim=context_dim if self.disable_self_attn else None)  # is a self-attention if not self.disable_self_attn

@@ -213,7 +213,7 @@ def worker(gpu, cfg):
         black_image_feature = black_image_feature,
         ).to(gpu)
     
-    model.to(torch.float16)
+    # model.to(torch.float16)
     
 
     # Load checkpoint
@@ -290,13 +290,13 @@ def worker(gpu, cfg):
     #     "y": torch.rand([1, 77, 1024], dtype=torch.float32)
     # }
     
-    # x = torch.rand([1,4,16,32,32], dtype=torch.float32).cuda(gpu)
-    # t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
-    # y = torch.rand([1, 77, 1024], dtype=torch.float32).cuda(gpu)
-    
-    x = torch.rand([1,4,16,32,32], dtype=torch.float16).cuda(gpu)
+    x = torch.rand([1,4,16,32,32], dtype=torch.float32).cuda(gpu)
     t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
-    y = torch.rand([1, 77, 1024], dtype=torch.float16).cuda(gpu)
+    y = torch.rand([1, 77, 1024], dtype=torch.float32).cuda(gpu)
+    
+    # x = torch.rand([1,4,16,32,32], dtype=torch.float16).cuda(gpu)
+    # t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
+    # y = torch.rand([1, 77, 1024], dtype=torch.float16).cuda(gpu)
     
     
     model.eval()
@@ -409,13 +409,13 @@ def worker(gpu, cfg):
     perf_val = {}
     for loop_num in loop_nums:
         # test pytorch  
-        # x = torch.rand([1,4,16,32,32], dtype=torch.float32).cuda(gpu)
-        # t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
-        # y = torch.rand([1, 77, 1024], dtype=torch.float32).cuda(gpu)
-        
-        x = torch.rand([1,4,16,32,32], dtype=torch.float16).cuda(gpu)
+        x = torch.rand([1,4,16,32,32], dtype=torch.float32).cuda(gpu)
         t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
-        y = torch.rand([1, 77, 1024], dtype=torch.float16).cuda(gpu)
+        y = torch.rand([1, 77, 1024], dtype=torch.float32).cuda(gpu)
+        
+        # x = torch.rand([1,4,16,32,32], dtype=torch.float16).cuda(gpu)
+        # t = torch.tensor([1], dtype=torch.int64).cuda(gpu)
+        # y = torch.rand([1, 77, 1024], dtype=torch.float16).cuda(gpu)
 
         model.eval()
         with torch.no_grad():
